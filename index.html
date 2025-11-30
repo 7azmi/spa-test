@@ -218,3 +218,244 @@
         <div class="brand-title">My SPA</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn" id="ctaMobile">Action</button>
+      </div>
+    </div>
+
+    <div class="shell" role="application" aria-label="App shell">
+      <!-- Sidebar (desktop) -->
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="logo">
+          <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4)"></div>
+          <div>
+            <div>My SPA</div>
+            <div style="font-size:12px;color:var(--muted)">single-file responsive template</div>
+          </div>
+        </div>
+
+        <nav class="nav" id="desktopnav" aria-label="Primary navigation">
+          <button data-route="home" aria-current="true">Home</button>
+          <button data-route="dashboard">Dashboard</button>
+          <button data-route="reports">Reports</button>
+          <button data-route="settings">Settings</button>
+          <button data-route="about">About</button>
+        </nav>
+
+        <div style="margin-top:auto;color:var(--muted);font-size:13px">
+          <div>Signed in as <strong>you@example.com</strong></div>
+          <div style="margin-top:8px">
+            <small>Version 1.0 — lightweight SPA</small>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main id="main" tabindex="0" aria-live="polite">
+        <!-- Views (pages) -->
+        <section id="home" class="page active" data-title="Home">
+          <header class="hero">
+            <div>
+              <h1 style="margin:0 0 6px 0">Welcome</h1>
+              <div style="color:var(--muted)">A tiny single-file SPA that's responsive and touch-friendly.</div>
+            </div>
+            <div class="controls">
+              <button class="btn" id="newItem">New</button>
+              <button class="btn" id="openReports">Open Reports</button>
+            </div>
+          </header>
+
+          <div class="grid" aria-hidden="false">
+            <div class="card">
+              <div style="font-weight:700">Quick action</div>
+              <div style="color:var(--muted);margin-top:8px">Tap this to trigger an action that shows the SPA behavior.</div>
+              <div style="display:flex;justify-content:flex-end;margin-top:8px">
+                <button class="btn" data-action="quick">Go</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div style="font-weight:700">Scroll content</div>
+              <div style="color:var(--muted);margin-top:8px">The main area scrolls separately from the page edges.</div>
+              <div style="display:flex;justify-content:flex-end;margin-top:8px">
+                <a href="#about" style="color:var(--accent);text-decoration:none;font-weight:600">Jump to About →</a>
+              </div>
+            </div>
+          </div>
+
+          <article style="margin-top:18px">
+            <h2>Details</h2>
+            <p style="color:var(--muted)">This is sample text to demonstrate vertical scrolling inside the main card. Try the 'New' button or the nav to switch pages without reloading.</p>
+
+            <!-- filler to make scrolling obvious -->
+            <div style="height:800px;background:linear-gradient(180deg,transparent,rgba(255,255,255,0.02));border-radius:8px;margin-top:12px;padding:12px;color:var(--muted)">
+              <strong>Scrollable area</strong>
+              <p>Use your mouse wheel, trackpad, or touch to scroll this area. Nested scroll behaviour is intentionally simple — avoid scroll-in-scroll when you can for best UX.</p>
+            </div>
+          </article>
+        </section>
+
+        <section id="dashboard" class="page hidden" data-title="Dashboard">
+          <h1 style="margin-top:0">Dashboard</h1>
+          <p style="color:var(--muted)">Some dashboard widgets below.</p>
+          <div class="grid" style="margin-top:12px">
+            <div class="card"><div style="font-weight:700">Usage</div><div style="color:var(--muted)">Active users, charts, etc (placeholder).</div></div>
+            <div class="card"><div style="font-weight:700">Storage</div><div style="color:var(--muted)">File usage and quotas.</div></div>
+          </div>
+        </section>
+
+        <section id="reports" class="page hidden" data-title="Reports">
+          <h1 style="margin-top:0">Reports</h1>
+          <p style="color:var(--muted)">List of reports. Each row is a clickable element.</p>
+
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+            <button class="card" style="text-align:left" data-report="r1">Monthly - September</button>
+            <button class="card" style="text-align:left" data-report="r2">Monthly - October</button>
+            <button class="card" style="text-align:left" data-report="r3">Ad-hoc export</button>
+          </div>
+        </section>
+
+        <section id="settings" class="page hidden" data-title="Settings">
+          <h1 style="margin-top:0">Settings</h1>
+          <p style="color:var(--muted)">Toggles and preferences go here.</p>
+          <label style="display:flex;gap:8px;align-items:center;margin-top:12px">
+            <input type="checkbox" id="prefPush" /> <span>Enable notifications</span>
+          </label>
+        </section>
+
+        <section id="about" class="page hidden" data-title="About">
+          <h1 style="margin-top:0">About this template</h1>
+          <p style="color:var(--muted)">Small, single-file, responsive SPA with smooth scrolling and simple client-side routing.</p>
+          <footer>
+            <div>Made for quick prototypes — adapt and expand.</div>
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <!-- Mobile slide-over menu (hidden by default) -->
+    <div id="mobilemenu" role="dialog" aria-modal="false" style="display:none;position:fixed;inset:64px 12px auto 12px;z-index:60">
+      <div style="background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));border-radius:14px;padding:12px;box-shadow:0 24px 40px rgba(2,6,23,0.6)">
+        <nav class="nav" id="mobilenav">
+          <button data-route="home">Home</button>
+          <button data-route="dashboard">Dashboard</button>
+          <button data-route="reports">Reports</button>
+          <button data-route="settings">Settings</button>
+          <button data-route="about">About</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ========= Basic SPA Router + UI interactions ========= */
+    (function(){
+      const pages = Array.from(document.querySelectorAll('.page'));
+      const navButtons = Array.from(document.querySelectorAll('[data-route]'));
+      const desktopNav = document.getElementById('desktopnav');
+      const mobileMenu = document.getElementById('mobilemenu');
+      const hambtn = document.getElementById('hambtn');
+      const main = document.getElementById('main');
+
+      function setActiveRoute(route, push=true){
+        // hide/show pages
+        pages.forEach(p=>{
+          if(p.id === route){
+            p.classList.add('active');
+            p.classList.remove('hidden');
+            document.title = p.dataset.title || 'App';
+          } else {
+            p.classList.remove('active');
+            p.classList.add('hidden');
+          }
+        });
+
+        // update nav aria-current
+        navButtons.forEach(b=>{
+          if(b.dataset.route === route) b.setAttribute('aria-current','true');
+          else b.removeAttribute('aria-current');
+        });
+
+        // optionally push hash state
+        if(push){
+          const newHash = '#' + route;
+          if(location.hash !== newHash) history.pushState({route}, '', newHash);
+        }
+
+        // close mobile menu if open
+        closeMobileMenu();
+        // focus main for keyboard users
+        main.focus();
+      }
+
+      // init from hash or default 'home'
+      const initial = location.hash ? location.hash.replace('#','') : 'home';
+      setActiveRoute(initial, false);
+
+      // nav clicks
+      navButtons.forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          const r = btn.dataset.route;
+          if(!r) return;
+          setActiveRoute(r);
+        });
+      });
+
+      // mobile hamburger toggle
+      function openMobileMenu(){
+        mobileMenu.style.display = 'block';
+        hambtn.setAttribute('aria-expanded','true');
+        mobileMenu.setAttribute('aria-modal','true');
+      }
+      function closeMobileMenu(){
+        mobileMenu.style.display = 'none';
+        hambtn.setAttribute('aria-expanded','false');
+        mobileMenu.setAttribute('aria-modal','false');
+      }
+      hambtn.addEventListener('click', ()=>{
+        if(mobileMenu.style.display === 'block') closeMobileMenu();
+        else openMobileMenu();
+      });
+
+      // hide mobile menu on outside click
+      document.addEventListener('click', (e)=>{
+        if(!mobileMenu.contains(e.target) && !hambtn.contains(e.target) && mobileMenu.style.display === 'block'){
+          closeMobileMenu();
+        }
+      });
+
+      // handle browser back/forward
+      window.addEventListener('popstate', (ev)=>{
+        const route = (ev.state && ev.state.route) || (location.hash ? location.hash.replace('#','') : 'home');
+        setActiveRoute(route, false);
+      });
+
+      // example actions
+      document.getElementById('newItem').addEventListener('click', ()=>{
+        alert('Pretend we created a new item — this keeps everything client-side (SPA).');
+      });
+
+      document.getElementById('openReports').addEventListener('click', ()=> setActiveRoute('reports'));
+      document.querySelectorAll('[data-action="quick"]').forEach(b => b.addEventListener('click', ()=> alert('Quick action triggered!')));
+
+      document.querySelectorAll('[data-report]').forEach(r=>{
+        r.addEventListener('click', ()=> {
+          const id = r.dataset.report;
+          alert('Opening report: ' + id);
+        });
+      });
+
+      // Accessibility: keyboard nav via Arrow keys (optional)
+      desktopNav.addEventListener('keydown', (e)=>{
+        const focusable = Array.from(desktopNav.querySelectorAll('button'));
+        const idx = focusable.indexOf(document.activeElement);
+        if(e.key === 'ArrowDown'){ e.preventDefault(); focusable[(idx+1)%focusable.length].focus(); }
+        if(e.key === 'ArrowUp'){ e.preventDefault(); focusable[(idx-1+focusable.length)%focusable.length].focus(); }
+      });
+
+      // Improve scrolling performance: when heavy UI updates happen, avoid layout thrash.
+      // (This is a hint for when you expand the template.)
+
+    })();
+  </script>
+</body>
+</html>
