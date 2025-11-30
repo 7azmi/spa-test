@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Responsive HTML SPA Template</title>
+  <style>
+    /* ========== Basic Theme Variables ========== */
+    :root{
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #9aa4b2;
+      --accent: #4f46e5;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 12px;
+      --max-width: 1100px;
+      --gap: 16px;
+      --safe-top: 16px;
+    }
+
+    /* ========== Page reset ========== */
+    *{box-sizing:border-box}
+    html,body,#app{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg) 0%, #071021 100%);
+      color: #e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Smooth page-wide scrolling for anchor jumps */
+    html { scroll-behavior: smooth; }
+
+    /* ========== Layout ========== */
+    .shell{
+      max-width: var(--max-width);
+      margin: var(--safe-top) auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--gap);
+      padding: 20px;
+      align-items:start;
+    }
+
+    /* Sidebar (desktop) */
+    .sidebar{
+      background: linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));
+      border-radius: var(--radius);
+      padding: 18px;
+      min-height: 72vh;
+      position: sticky;
+      top: calc(var(--safe-top) + 10px);
+      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .logo{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      font-weight:700;
+      letter-spacing:0.3px;
+    }
+
+    .nav{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:8px;
+    }
+
+    .nav button{
+      background:transparent;
+      border:0;
+      color:var(--muted);
+      text-align:left;
+      padding:10px 8px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      transition:all .18s ease;
+    }
+    .nav button[aria-current="true"], .nav button:hover{
+      background: linear-gradient(90deg, rgba(79,70,229,0.12), rgba(79,70,229,0.06));
+      color: #dfe7ff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(79,70,229,0.06);
+    }
+
+    /* Mobile topbar */
+    .mobile-topbar{
+      display:none;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 14px;
+      gap:12px;
+      margin: 10px;
+    }
+
+    .hamburger{
+      width:42px;
+      height:42px;
+      border-radius:10px;
+      display:inline-grid;
+      place-items:center;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);
+      cursor:pointer;
+    }
+
+    .brand-title{font-weight:700}
+
+    /* Main content area — scrollable */
+    main{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding: 20px;
+      min-height: 72vh;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.4);
+      overflow:auto; /* allow scrolling inside the card */
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    .page{
+      display:none;
+      will-change: opacity, transform;
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .page.active{
+      display:block;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .page.hidden{
+      opacity:0;
+      transform:translateY(6px);
+    }
+
+    header.hero{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+
+    .controls{
+      display:flex;
+      gap:8px;
+    }
+
+    .btn{
+      border:0;
+      background:var(--accent);
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      box-shadow: 0 10px 20px rgba(79,70,229,0.12);
+      transition: transform .12s ease;
+    }
+    .btn:active{ transform: translateY(1px) }
+
+    /* Small tiles grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+    }
+    .card{
+      background: rgba(255,255,255,0.02);
+      padding:12px;
+      border-radius:10px;
+      min-height:88px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    /* Footer */
+    footer{ margin-top:20px; color:var(--muted); font-size:13px }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 880px){
+      .shell{ grid-template-columns: 1fr; padding: 12px; gap:12px; max-width:950px }
+      .sidebar{ display:none }
+      .mobile-topbar{ display:flex }
+      main{ min-height: calc(100vh - 120px) }
+      .grid{ grid-template-columns: 1fr }
+    }
+
+    /* Make clickable areas comfortably large for touch */
+    button, .btn, .nav button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+    /* Accessibility focus styles */
+    :focus{ outline: 3px solid rgba(79,70,229,0.18); outline-offset: 2px; border-radius:8px; }
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Mobile topbar -->
+    <div class="mobile-topbar" aria-hidden="false">
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="hambtn" class="hamburger" aria-expanded="false" aria-controls="mobilemenu" title="Open menu" aria-label="Open menu">
+          &#9776;
+        </button>
+        <div class="brand-title">My SPA</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
